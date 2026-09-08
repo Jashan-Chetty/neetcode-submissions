@@ -1,16 +1,25 @@
 public class Solution {
-    public int[] TwoSum(int[] nums, int target) {
-        Dictionary<int, int> check = new Dictionary<int, int>();
+    public bool IsPalindrome(string s) {
+        int left = 0;
+        int right = s.Length - 1;
 
-        for(int i = 0; i < nums.Length; i++) {
-            int diff = target - nums[i];
+        while(left < right) {
+            if(!char.IsLetterOrDigit(s[left])) {
+                left++;
+            }
+            else if(!char.IsLetterOrDigit(s[right])) {
+                right--;
+            }
+            else {
+                if(char.ToLower(s[left]) != char.ToLower(s[right])){
+                    return false;
+                }
 
-            if(check.ContainsKey(diff))
-                return new int[] { check[diff] , i };
-
-            check[nums[i]] = i;
+                left++;
+                right--;
+            }
         }
 
-        return null;
+        return true;
     }
 }
